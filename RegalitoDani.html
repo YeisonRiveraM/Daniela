@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Dani 💜</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(180, 100, 255, 0.25), transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(255, 120, 220, 0.18), transparent 30%),
+                linear-gradient(135deg, #16052b 0%, #2e0854 45%, #6a1b9a 100%);
+            overflow-x: hidden;
+        }
+
+        /* ---------- FONDO ---------- */
+
+        .background-glow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            opacity: 0.25;
+        }
+
+        .glow.one {
+            width: 250px;
+            height: 250px;
+            background: #b86cff;
+            top: -80px;
+            left: -70px;
+        }
+
+        .glow.two {
+            width: 300px;
+            height: 300px;
+            background: #ff6bd6;
+            bottom: -120px;
+            right: -100px;
+        }
+
+        /* ---------- PARTÍCULAS ---------- */
+
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            opacity: 0.45;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) {
+            top: 12%;
+            left: 12%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            top: 25%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(3) {
+            top: 65%;
+            left: 8%;
+            animation-delay: 4s;
+        }
+
+        .particle:nth-child(4) {
+            bottom: 15%;
+            right: 12%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-18px) rotate(8deg);
+            }
+        }
+
+        /* ---------- CONTENEDOR ---------- */
+
+        .page {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 720px;
+            margin: auto;
+            padding: 45px 18px 60px;
+        }
+
+        /* ---------- INTRO ---------- */
+
+        .intro {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: appear 1.2s ease;
+        }
+
+        .intro-small {
+            color: #d9b8ff;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .intro h1 {
+            font-size: clamp(38px, 10vw, 65px);
+            margin: 0;
+            line-height: 1.05;
+            background: linear-gradient(90deg, #f1d9ff, #d79cff, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .intro p {
+            max-width: 440px;
+            color: #eadcff;
+            font-size: 16px;
+            line-height: 1.7;
+            margin: 22px 0 30px;
+        }
+
+        .open-button {
+            border: 1px solid rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 13px 28px;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: 0.3s ease;
+        }
+
+        .open-button:hover {
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.17);
+        }
+
+        .arrow {
+            margin-top: 45px;
+            opacity: 0.55;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(8px);
+            }
+        }
+
+        /* ---------- TARJETA PRINCIPAL ---------- */
+
+        .card {
+            background: rgba(35, 10, 60, 0.55);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(220, 170, 255, 0.2);
+            border-radius: 32px;
+            padding: 35px 28px;
+            box-shadow: 0 20px 70px rgba(0,0,0,0.35);
+            margin-bottom: 25px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .title h2 {
+            font-size: 27px;
+            margin: 0 0 7px;
+            color: #efd8ff;
+        }
+
+        .title span {
+            font-size: 13px;
+            color: #cdb0e8;
+        }
+
+        /* ---------- FOTO ---------- */
+
+        .photo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 27px;
+        }
+
+        .photo {
+            width: 190px;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.9);
+            box-shadow:
+                0 0 0 8px rgba(205, 145, 255, 0.1),
+                0 10px 35px rgba(0,0,0,0.4);
+        }
+
+        /* ---------- MENSAJE ---------- */
+
+        .message {
+            text-align: center;
+            color: #f4eaff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .message .highlight {
+            color: #e0aaff;
+            font-weight: 600;
+        }
+
+        /* ---------- MINI ESTADÍSTICAS ---------- */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 30px 0;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 15px 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 19px;
+            font-weight: 600;
+            color: #e4b7ff;
+        }
+
+        .stat-label {
+            display: block;
+            margin-top: 4px;
+            font-size: 10px;
+            color: #cdbbe0;
+        }
+
+        /* ---------- FRASE ---------- */
+
+        .quote {
+            text-align: center;
+            padding: 20px 10px;
+            margin: 10px 0 25px;
+            color: #dbc7ed;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .quote::before {
+            content: "“";
+            font-size: 35px;
+            color: #c17cff;
+            display: block;
+            height: 25px;
+        }
+
+        /* ---------- PLANES ---------- */
+
+        .plans {
+            margin-top: 30px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #e6c8ff;
+            font-size: 20px;
+            margin-bottom: 17px;
+        }
+
+        .plan-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .plan {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(220,170,255,0.13);
+            color: #eadcff;
+            padding: 8px 13px;
+            border-radius: 999px;
+            font-size: 12px;
+        }
+
+        /* ---------- CANCIÓN ---------- */
+
+        .song-section {
+            text-align: center;
+            padding: 35px 0 10px;
+        }
+
+        .song-section .small {
+            font-size: 12px;
+            color: #cdb0e8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .song-section h3 {
+            font-size: 29px;
+            margin: 8px 0 5px;
+            color: #f1d8ff;
+        }
+
+        .song-section p {
+            color: #d8c4e9;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 152px;
+            border: none;
+            border-radius: 13px;
+            margin-bottom: 14px;
+        }
+
+        .spotify-button {
+            display: inline-block;
+            background: #1DB954;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(29,185,84,0.25);
+            transition: 0.3s ease;
+        }
+
+        .spotify-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ---------- FINAL ---------- */
+
+        .final {
+            text-align: center;
+            padding: 30px 10px 15px;
+        }
+
+        .final p {
+            color: #d8c4e9;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .final .signature {
+            color: #e3b6ff;
+            font-weight: 600;
+            font-size: 15px;
+            margin-top: 18px;
+        }
+
+        /* ---------- ANIMACIÓN ---------- */
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden-content {
+            display: none;
+        }
+
+        .show {
+            display: block;
+            animation: appear 1s ease;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+
+        @media (max-width: 500px) {
+
+            .page {
+                padding: 20px 12px 45px;
+            }
+
+            .card {
+                padding: 28px 19px;
+                border-radius: 26px;
+            }
+
+            .photo {
+                width: 160px;
+                height: 160px;
+            }
+
+            .stats {
+                gap: 6px;
+            }
+
+            .stat {
+                padding: 13px 5px;
+            }
+
+            .stat-number {
+                font-size: 16px;
+            }
+
+            .stat-label {
+                font-size: 9px;
+            }
+
+            iframe {
+                height: 152px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Fondo -->
+    <div class="background-glow">
+        <div class="glow one"></div>
+        <div class="glow two"></div>
+    </div>
+
+    <!-- Partículas -->
+    <div class="particles">
+        <div class="particle">🦋</div>
+        <div class="particle">💜</div>
+        <div class="particle">✨</div>
+        <div class="particle">🦋</div>
+    </div>
+
+
+    <main class="page">
+
+        <!-- INTRO -->
+        <section class="intro">
+
+            <div class="intro-small">
+                hecho para la persona más especial y linda de todas
+            </div>
+
+            <h1>Daniela 💜</h1>
+
+            <p>
+                Te hice un detallito :)
+            </p>
+
+            <button class="open-button" onclick="abrirPagina()">
+                Abrir 🦋🧩
+            </button>
+
+            <div class="arrow">
+                ↓
+            </div>
+
+        </section>
+
+
+        <!-- CONTENIDO -->
+        <div id="contenido" class="hidden-content">
+
+            <section class="card">
+
+                <div class="title">
+                    <h2>Para ti, Dani 💜</h2>
+                    <span>porque sí... porque tú.</span>
+                </div>
+
+
+                <!-- FOTO -->
+                <div class="photo-container">
+                    <img
+                        src="https://i.imgur.com/T8SKbeS.png"
+                        alt="Dani"
+                        class="photo">
+                </div>
+
+
+                <!-- MENSAJE -->
+                <div class="message">
+
+                    <p>
+			Solo quiero decirte que eres lo 
+                        <span class="highlight">mejor</span>
+                        que me ha pasado
+                    </p>
+
+                    <p>
+                        Mi niña.
+                        💜
+                    </p>
+
+                </div>
+
+
+                <!-- ESTADÍSTICAS -->
+                <div class="stats">
+
+                    <div class="stat">
+                        <span class="stat-number">14+</span>
+                        <span class="stat-label">días siendo feliz (y los que faltan)</span>
+                    </div>
+
+                    <div class="stat">
+                        <span class="stat-number">20+</span>
+                        <span class="stat-label">planes pendientes en nuestro excel</span>
+                    </div>
+
+                    <div class="stat">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">momentos por vivir</span>
+                    </div>
+
+                </div>
+
+
+                <!-- FRASE -->
+                <div class="quote">
+                    Siempre estaré para ti 💜.
+                </div>
+
+
+                <!-- PLANES -->
+                <section class="plans">
+
+                    <div class="section-title">
+                        Tantas cosas por hacer 👀
+                    </div>
+
+                    <div class="plan-list">
+
+                        <span class="plan">📸 Fotos</span>
+                        <span class="plan">🍿 Películas</span>
+                        <span class="plan">🍦 Comer algo</span>
+                        <span class="plan">🌆 Salir</span>
+                        <span class="plan">😂 Reírnos</span>
+                        <span class="plan">📍 Conocer lugares</span>
+                        <span class="plan">🫂 Abrazos</span>
+                        <span class="plan">✨ Y muchos más...</span>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ABRAZOS -->
+                <div class="quote">
+
+                    <strong>Estado actual:</strong><br>
+
+                    Debo más de
+                    <span class="highlight">
+                        400.000.000 de abrazos.
+                    </span>
+
+                    <br><br>
+
+                    Y pienso pagar la deuda.
+                    Poco a poco siendo la personita más feliz de todas. 🫂
+
+                </div>
+
+
+                <!-- CANCIÓN -->
+                <section class="song-section">
+
+                    <span class="small">
+                        y bueno...
+                    </span>
+
+                    <h3>Esta me acordó a ti. 🎵</h3>
+
+                    <p>
+                        Quizás simplemente seas tú.
+                    </p>
+
+
+                    <!-- Spotify -->
+                    <iframe
+                        src="https://open.spotify.com/embed/track/5WGl8T9s7dvX1ugVzw0xXX?utm_source=generator"
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+
+
+                    <a
+                        href="https://open.spotify.com/track/5WGl8T9s7dvX1ugVzw0xXX"
+                        target="_blank"
+                        class="spotify-button">
+
+                        🎵 Escuchar canción completa
+
+                    </a>
+
+                </section>
+
+
+                <!-- FINAL -->
+                <section class="final">
+
+                    <p>
+                        Gracias por estos días,
+                        por las conversaciones,
+                        por los chistes,
+                        por los planes,
+                        por los abrazos pendientes, 
+			por las estrellitas
+                        y por hacer que todo esto se sienta tan bonito.
+                    </p>
+
+                    <p>
+                        Y sí...
+                        <br>
+                        <strong>te quiero mucho, mi princesa.</strong> 💜
+                    </p>
+
+                    <div class="signature">
+                        Hecho especialmente para ti 🦋
+                    </div>
+
+                </section>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        function abrirPagina() {
+
+            const contenido = document.getElementById("contenido");
+
+            contenido.classList.remove("hidden-content");
+            contenido.classList.add("show");
+
+            setTimeout(() => {
+
+                contenido.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }, 100);
+
+        }
+
+    </script>
+
+</body>
+</html>
+
